@@ -58,6 +58,9 @@ jobs:
         with:
           name: vercel-artifacts
           path: .vercel
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
         
       - name: Install Vercel CLI
         run: npm add -g vercel
