@@ -9,15 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
          version: '10'
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '25'
           cache: 'pnpm'
@@ -29,7 +29,7 @@ jobs:
         run: pnpm add -g vercel
 
       - name: Pull Vercel environment variables from GitHub Secrets
-        run: vercel pull --yes --environment-production --token ${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download Vercel artifacts
         uses: actions/download-artifact@v4
